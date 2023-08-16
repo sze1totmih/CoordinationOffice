@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class role {
+public class PI {
 
-    private int roleID;
+    private int piID;
     @NotBlank
-    private int roleName;
+    private String piName;
 }

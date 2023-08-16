@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class coordinator {
+public class Coordinator {
 
     private int coordinatorId;
     @NotBlank

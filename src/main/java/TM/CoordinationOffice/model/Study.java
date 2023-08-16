@@ -10,9 +10,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class pi {
+public class Study {
 
-    private int piID;
+    private int studyID;
     @NotBlank
-    private String piName;
+    private String protocol;
+    @NotBlank
+    private String indication;
+    @NotBlank
+    private int phase;
+    @NotBlank
+    private String ip;
+    private String comparator;
+    private String nickname;
 }

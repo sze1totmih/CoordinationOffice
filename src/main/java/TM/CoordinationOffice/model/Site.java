@@ -1,6 +1,7 @@
 package TM.CoordinationOffice.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,17 +11,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class study {
+public class Site {
 
-    private int studyID;
+    private int siteID;
     @NotBlank
-    private String protocol;
-    @NotBlank
-    private String indication;
-    @NotBlank
-    private int phase;
-    @NotBlank
-    private String ip;
-    private String comparator;
-    private String nickname;
+    @Size(min = 3, max = 50)
+    private String siteName;
 }
