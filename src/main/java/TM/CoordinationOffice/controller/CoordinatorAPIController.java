@@ -17,7 +17,7 @@ public class CoordinatorAPIController {
 
     //localhost:8888/api/coordinator/
     @GetMapping(value = "/coordinator",name = "Get all coordinators")
-    public List<Coordinator> getAllSubject() {
+    public List<Coordinator> getAllCoordinators() {
         return service.getAllCoordinators();
     }
 
