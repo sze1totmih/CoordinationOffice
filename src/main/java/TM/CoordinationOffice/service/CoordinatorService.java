@@ -53,28 +53,20 @@ public class CoordinatorService implements ICoordinatorService {
         coordinatorRepository.save(coordinator);
     }
 
-    public PagedList<Coordinator> getAllCoordinators(Integer pageNo, Integer pageSize, String sortBy) {
-        Pageable paging;
-        if (sortBy!=null)
-            paging = (Pageable) PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        else
-            paging = (Pageable) PageRequest.of(pageNo, pageSize);
-        Page<Coordinator> pageResult = coordinatorRepository.findAll(paging);
-        PagedList<Coordinator> pagedList = new PagedList<Coordinator>();
-
-        if (pageResult.hasContent()) {
-            pagedList.setList(pageResult.getContent());
-            pagedList.setCurrentPage(paging.getNumberOfPages());
-            pagedList.setPageSize(pageSize);
+    public PagedList<Coordinator> GetPaged(int currentPage, int pageSize) {
+        Pageable page = PageRequest.of(currentPage,pageSize);
+        Page<Coordinator> pageCoordinator=coordinatorRepository.findAll(page);
+        PagedList<Coordinator> pagedList = new PagedList<>();
+        if (pageCoordinator.hasContent()) {
+            pagedList.setCurrentPage(page.getNumberOfPages());
+            pagedList.setPageSize(page.getPageSize());
+            pagedList.setNumberOfItems(coordinatorRepository.count());
             int numberOfPage=(int) Math.floor(coordinatorRepository.count()/pageSize)+1;
             pagedList.setNumberOfPage(numberOfPage);
-            pagedList.setNumberOfItems(coordinatorRepository.count());
-        }
-        else {
-            pagedList.setCurrentPage(paging.getNumberOfPages());
-            pagedList.setPageSize(pageSize);
-            pagedList.setNumberOfPage(0);
-            pagedList.setNumberOfItems(coordinatorRepository.count());
+            pagedList.setItems(pageCoordinator.getContent());
+            return pagedList;
+        } else {
+            return null;
         }
     }
 }
