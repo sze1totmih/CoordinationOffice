@@ -36,9 +36,9 @@ public class CoordinatorService implements ICoordinatorService {
     }
 
     @Override
-    public int saveOrUpdate(Coordinator coordinator) {
+    public long saveOrUpdate(Coordinator coordinator) {
         coordinatorRepository.save(coordinator);
-        return coordinator.getId();
+        return coordinator.getCoordinatorId();
     }
 
     @Override
@@ -54,12 +54,12 @@ public class CoordinatorService implements ICoordinatorService {
     }
 
     public PagedList<Coordinator> GetPaged(int currentPage, int pageSize) {
-        Pageable page = PageRequest.of(currentPage,pageSize);
+        Pageable page = (Pageable) PageRequest.of(currentPage,pageSize);
         Page<Coordinator> pageCoordinator=coordinatorRepository.findAll(page);
         PagedList<Coordinator> pagedList = new PagedList<>();
         if (pageCoordinator.hasContent()) {
             pagedList.setCurrentPage(page.getNumberOfPages());
-            pagedList.setPageSize(page.getPageSize());
+            pagedList.setPageSize(page.getNumberOfPages());
             pagedList.setNumberOfItems(coordinatorRepository.count());
             int numberOfPage=(int) Math.floor(coordinatorRepository.count()/pageSize)+1;
             pagedList.setNumberOfPage(numberOfPage);

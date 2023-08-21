@@ -7,7 +7,7 @@ import java.util.List;
 public interface ICoordinatorService {
     public List<Coordinator> getAllCoordinators();
     public Coordinator getCoordinatorById(long id);
-    public int saveOrUpdate(Coordinator coordinator);
+    public long saveOrUpdate(Coordinator coordinator);
     public void deleteById(long id);
     public void update(Coordinator coordinator, long id);
 }
