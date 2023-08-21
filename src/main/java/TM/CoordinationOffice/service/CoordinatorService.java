@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CoordinatorService implements ICoordinatorService {
@@ -18,27 +19,35 @@ public class CoordinatorService implements ICoordinatorService {
     @Override
     public List<Coordinator> getAllCoordinators() {
         List<Coordinator> coordinators = new ArrayList<Coordinator>();
-        coordinatorRepository
-        return null;
+        coordinatorRepository.findAll().forEach(coordinator -> coordinators.add(coordinator));
+        return coordinators;
     }
 
     @Override
-    public Coordinator getCoordinatorById(int id) {
-        return null;
+    public Coordinator getCoordinatorById(long id) {
+        Optional<Coordinator> coordinators = coordinatorRepository.findById(id);
+        if (coordinators.isPresent())
+            return coordinators.get();
+        else {
+            return null;
+        }
     }
 
     @Override
     public int saveOrUpdate(Coordinator coordinator) {
-        return 0;
+        coordinatorRepository.save(coordinator);
+        return coordinator.getId();
     }
 
     @Override
-    public void deleteById(int id) {
-
+    public void deleteById(long id) {
+        Optional<Coordinator> coordinators =coordinatorRepository.findById(id);
+        if (coordinators.isPresent())
+            coordinatorRepository.deleteById(id);
     }
 
     @Override
-    public void update(Coordinator coordinator, int id) {
+    public void update(Coordinator coordinator, long id) {
 
     }
 }

@@ -22,7 +22,7 @@ public class Coordinator {
 
     @Id
     @Column(name ="CoordinatorID",length =11)
-    private int coordinatorId;
+    private long coordinatorId;
 
     @Column(name = "CoordinatorName",length = 64)
     @NotBlank
