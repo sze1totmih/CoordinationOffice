@@ -26,8 +26,8 @@ public class CoordinatorService implements ICoordinatorService {
     }
 
     @Override
-    public Coordinator getCoordinatorById(long id) {
-        Optional<Coordinator> coordinators = coordinatorRepository.findById(id);
+    public Coordinator getCoordinatorById(long coordinatorId) {
+        Optional<Coordinator> coordinators = coordinatorRepository.findById(coordinatorId);
         if (coordinators.isPresent())
             return coordinators.get();
         else {
@@ -42,14 +42,14 @@ public class CoordinatorService implements ICoordinatorService {
     }
 
     @Override
-    public void deleteById(long id) {
-        Optional<Coordinator> coordinators =coordinatorRepository.findById(id);
+    public void deleteById(long coordinatorId) {
+        Optional<Coordinator> coordinators =coordinatorRepository.findById(coordinatorId);
         if (coordinators.isPresent())
-            coordinatorRepository.deleteById(id);
+            coordinatorRepository.deleteById(coordinatorId);
     }
 
     @Override
-    public void update(Coordinator coordinator, long id) {
+    public void update(Coordinator coordinator, long coordinatorId) {
         coordinatorRepository.save(coordinator);
     }
 

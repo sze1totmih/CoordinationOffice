@@ -48,23 +48,23 @@ public class CoordinatorsController {
         return "redirect:/coordinator/index";
     }
 
-    @GetMapping("/coordinator/delete/{id}")
-    public String deleteUser (@PathVariable("id") long id, Model model) {
-        coordinatorService.deleteById(id);
+    @GetMapping("/coordinator/delete/{coordinatorId}")
+    public String deleteUser (@PathVariable("coordinatorId") long coordinatorId, Model model) {
+        coordinatorService.deleteById(coordinatorId);
         return "redirect:/coordinator/index";
     }
 
-    @GetMapping("/coordinator/edit/{id}")
-    public String showUpdateForm (@PathVariable("id") long id, Model model){
-        Coordinator coordinator = coordinatorService.getCoordinatorById(id);
+    @GetMapping("/coordinator/edit/{coordinatorId}")
+    public String showUpdateForm (@PathVariable("coordinatorId") long coordinatorId, Model model){
+        Coordinator coordinator = coordinatorService.getCoordinatorById(coordinatorId);
         model.addAttribute("coordinator", coordinator);
         return "th/coordinators/update-coordinator";
     }
 
-    @PostMapping("/coordinator/update/{id}")
-    public String updateCoordinator(@PathVariable("id") Long id, @Valid Coordinator coordinator, BindingResult result, Model model) {
+    @PostMapping("/coordinator/update/{coordinatorId}")
+    public String updateCoordinator(@PathVariable("coordinatorId") Long coordinatorId, @Valid Coordinator coordinator, BindingResult result, Model model) {
         if (result.hasErrors()){
-            coordinator.setCoordinatorId(id);
+            coordinator.setCoordinatorId(coordinatorId);
             return "th/coordinators/update-coordinator";
         }
         coordinatorService.saveOrUpdate(coordinator);

@@ -22,12 +22,12 @@ public class CoordinatorAPIController {
     }
 
     @PostMapping(value = "/Coordinator/getpaged")
-    public PagedList<Coordinator> GetPaged(@RequestBody QueryStringParameter paramters) {
-        int currentPage = paramters.getCurrentPage();
+    public PagedList<Coordinator> GetPaged(@RequestBody QueryStringParameter parameters) {
+        int currentPage = parameters.getCurrentPage();
         if (currentPage<0) {
             currentPage=0;
         }
-        int pageSize = paramters.getPageSize();
+        int pageSize = parameters.getPageSize();
         if (pageSize<=0) {
             pageSize=1;
         }
@@ -49,8 +49,8 @@ public class CoordinatorAPIController {
     }
 
     //localhost:8888/api/coordinator/1
-    @DeleteMapping(value = "/coordinator/{id}",name="Delete coordinator")
-    public void deleteCoordinator(@PathVariable long id) {
-        service.deleteById(id);
+    @DeleteMapping(value = "/coordinator/{coordinatorId}",name="Delete coordinator")
+    public void deleteCoordinator(@PathVariable long coordincoordinatorId) {
+        service.deleteById(coordincoordinatorId);
     }
 }

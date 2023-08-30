@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:insert="/th/fragments/head.html"></th:block>
+    <meta charset="UTF-8">
+    <title>Koordinátor szerkesztése</title>
+</head>
+<body>
+<div th:replace="/th/fragments/menu.html"></div>
+<div class="container">
+    <div class = "p-1 bg-info">
+        <h2 class="text-primary">Koordinátor szerkesztése</h2>
+        <form class=" form-inline" action="#"
+              th:action="@{/coordinator/update/{id}(id=${coordinator.id})}"
+              th:object="${coordinator}"
+              method="post">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="id">Azon.</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{id}" id="id" placeholder="Azonosító" disabled="disabled">
+                    <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="coordinatorName">Név</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{coordinatorName}" id="coordinatorName" placeholder="Koordinátor név">
+                    <span th:if="${#fields.hasErrors('coordinatorName')}" th:errors="*{coordinatorName}"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input class="btn btn-primary" type="submit" value="Koordinátor módosítása">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="/th/fragments/footer.html">&copy; Tóth Mihály</div>
+</body>
+</html>

@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Entity
 @Table(name = "sites")
 @Getter
@@ -20,7 +23,8 @@ import lombok.Setter;
 public class Site {
 
     @Id
-    @Column(name = "SiteID", length = 11)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "SiteID", nullable = false)
     private int siteID;
 
     @Column(name = "SiteName", length = 64)

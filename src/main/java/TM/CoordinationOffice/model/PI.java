@@ -10,6 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Entity
 @Table(name = "pis")
 @Getter
@@ -19,10 +22,11 @@ import lombok.Setter;
 public class PI {
 
     @Id
-    @Column(name = "PIID", length = 11)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "PIID", nullable = false)
     private int piID;
 
-    @Column(name = "PIName", length = 64)
+    @Column(name = "PIName",unique = true, length = 64)
     @NotBlank
     private String piName;
 

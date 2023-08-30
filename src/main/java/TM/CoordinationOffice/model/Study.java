@@ -10,6 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Entity
 @Table(name = "studys")
 @Getter
@@ -19,7 +22,8 @@ import lombok.Setter;
 public class Study {
 
     @Id
-    @Column(name = "StudyID", length = 11)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "StudyID", nullable = false)
     private int studyID;
 
     @Column(name = "Protocol", length = 64)
